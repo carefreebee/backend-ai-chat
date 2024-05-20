@@ -2,3 +2,4 @@ Django
 django-cors-headers
 g4f
 g4f[all]
+psycopg2-binary
