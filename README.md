@@ -32,17 +32,3 @@
     ```bash
     python manage.py runserver
     ```
-
-## Troubleshooting
-
-### Common Errors:
-
-1. **ModuleNotFoundError: No module named 'backend-ai-chat'**
-    - Ensure that `PYTHONPATH` is correctly set.
-    - Verify that the Procfile points to the correct WSGI application.
-
-2. **Database Issues:**
-    - Ensure that the database environment variables are correctly set in Railway.
-
-3. **Static Files Not Loading:**
-    - Verify that `STATIC_URL`, `STATIC_ROOT`, and `STATICFILES_DIRS` are correctly set in `settings.py`.
