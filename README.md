@@ -33,18 +33,6 @@
     python manage.py runserver
     ```
 
-## Deploying to Railway
-
-1. **Ensure `Procfile` is correctly set up:**
-    ```plaintext
-    web: gunicorn ai_chat_assistant_backend.wsgi:application
-    release: python manage.py makemigrations --no-input && python manage.py migrate --no-input
-    ```
-
-2. **Set Environment Variables on Railway:**
-    - `PYTHONPATH` should include the path to your project directory.
-    - Other necessary environment variables like `DJANGO_SETTINGS_MODULE`, `DATABASE_URL`, etc.
-
 ## Troubleshooting
 
 ### Common Errors:
