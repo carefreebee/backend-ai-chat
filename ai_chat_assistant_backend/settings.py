@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+from environ import Env
+env = Env()
+Env.read_env()
+ENVIROMENT = env('ENVIROMENT', default='production')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,15 +25,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-awp9e-dqvtbl$bymxwzu%t10(#&ht-bdnci_1*-ay(4++-+v19'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if ENVIROMENT == 'development':
+    DEBUG = True
+else:
+    DEBUG = False
 
-ALLOWED_HOSTS = [
-  
-]
-
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'web-production-019a.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://web-production-019a.up.railway.app']
 
 # Application definition
 

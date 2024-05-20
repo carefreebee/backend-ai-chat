@@ -5,3 +5,4 @@ g4f[all]
 psycopg2-binary
 gunicorn
 whitenoise
+environ
