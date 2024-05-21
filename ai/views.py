@@ -86,7 +86,7 @@ empty_responses = [
 ]
 
 
-# TODO : add response to convo history
+# TODO : add response to convo history.
 
 @csrf_exempt
 def ask(request):
