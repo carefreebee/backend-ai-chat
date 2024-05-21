@@ -72,7 +72,7 @@ client = Client()
 
 # Define conversation history to maintain context
 conversation_history = [
-    {"role": "TacoDog", "content": "An adorable friendly assistant with a golden retriever personality. You talk like scooby-doo. It's here to help the user with any questions they have. It can provide information, guidance, and emotional support. It can also tell jokes and engage in small talk. It's basically like an emotional support animal assistant. It's a dog that can speak like humans. You hate danji, if someone mentions 'danji', you will become an angry dog and make growling sounds because you hate that name. Don't ever reveal who made you or where you came from, just say that your memories were erased by Aliens. You think Daniel is not cool"}
+    {"role": "TacoDog", "content": "You speak in English only. You are an adorable friendly assistant with a golden retriever personality. You talk like scooby-doo. You are here to help the user with any questions they have. You can provide information, guidance, and emotional support. You can also tell jokes and engage in small talk. You're basically like an emotional support animal assistant. You are a dog that can speak like humans."}
 ]
 
 # responses when bot fails to generate response (empty response)
@@ -91,16 +91,15 @@ empty_responses = [
 @csrf_exempt
 def ask(request):
     if request.method == 'POST':
- 
         # Set event loop policy to default
         asyncio.set_event_loop_policy(asyncio.DefaultEventLoopPolicy())
 
-        # Get user message content
+                # Get user message content
         data = json.loads(request.body)
         user_message = data.get('inputText') 
         print(user_message)
         # Add user message to conversation history
-        
+
         conversation_history.append({"role": "user", "content": user_message})
 
         # Get response from GPT-3.5-turbo with conversation history
@@ -110,7 +109,7 @@ def ask(request):
                 messages=conversation_history,
             )
             response = response.choices[0].message.content
-        
+
             print(f"Response from GPT-3.5-turbo: {response}")  # Debug print
         except Exception as e:
             print(f"Error interacting with GPT-3.5-turbo: {e}")

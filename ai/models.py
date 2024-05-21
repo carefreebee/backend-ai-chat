@@ -13,3 +13,11 @@ class Chat(models.Model):
             'created_at': self.created_at.isoformat(),
             'user_id': self.user_id,
         }
+
+class AIChat(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)  # Assuming each AI response is associated with a user
+    content = models.TextField()  # Field to store the AI response content
+    created_at = models.DateTimeField(auto_now_add=True)  # Field to store the timestamp when the AI response was created
+
+    def __str__(self):
+        return f'AIChat object (User: {self.user.username}, Content: {self.content[:50]}, Created: {self.created_at})'
