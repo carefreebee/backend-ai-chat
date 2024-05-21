@@ -4,8 +4,8 @@
 
 1. **Clone the Repository:**
     ```bash
-    git clone https://github.com/your-repo/ai-chat-backend.git
-    cd ai-chat-backend
+    git clone https://github.com/carefreebee/backend-ai-chat.git
+    cd backend-ai-chat
     ```
 
 2. **Create and Activate Virtual Environment:**
@@ -32,3 +32,6 @@
     ```bash
     python manage.py runserver
     ```
+
+
+AMBOT ANI AMONG BACKEND AHHAHAHAHA BASTA MOGANA NA NA GOODS NA
