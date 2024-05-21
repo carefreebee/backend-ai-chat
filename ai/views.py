@@ -12,6 +12,9 @@ from .forms import SignupForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms.models import model_to_dict
+import asyncio
+
+
 
 @csrf_exempt
 def signup(request):
@@ -89,8 +92,8 @@ empty_responses = [
 def ask(request):
     if request.method == 'POST':
  
-        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
-
+        # Set event loop policy to default
+        asyncio.set_event_loop_policy(asyncio.DefaultEventLoopPolicy())
 
         # Get user message content
         data = json.loads(request.body)
