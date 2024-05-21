@@ -12,9 +12,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
-from environ import Env
-env = Env()
-Env.read_env()
+import environ
+env = environ.Env()
+environ.Env.read_env()
 ENVIROMENT = env('ENVIROMENT', default='production')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -96,7 +96,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': 'CZKJzCFYeoqaTcQEgmAqpOGLZBTfoupR',
+        'PASSWORD': env('DATABASE_PASSWORD'),
         'HOST': 'monorail.proxy.rlwy.net',
         'PORT': '18880',
     }
