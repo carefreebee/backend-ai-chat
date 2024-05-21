@@ -7,3 +7,4 @@ gunicorn
 whitenoise
 environ
 django-environ
+asyncio
