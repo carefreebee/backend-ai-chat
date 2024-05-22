@@ -28,12 +28,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# if ENVIROMENT == 'development':
-#     DEBUG = True
-# else:
-#     DEBUG = False
+if ENVIROMENT == 'development':
+    DEBUG = True
+else:
+    DEBUG = False
 
-DEBUG = True
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'web-production-019a.up.railway.app']
 CSRF_TRUSTED_ORIGINS = ['https://web-production-019a.up.railway.app']
@@ -94,24 +93,18 @@ WSGI_APPLICATION = 'ai_chat_assistant_backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'HOST': 'monorail.proxy.rlwy.net',
+        'PORT': '18880',
     }
 }
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'railway',
-#         'USER': 'postgres',
-#         'PASSWORD': env('DATABASE_PASSWORD'),
-#         'HOST': 'monorail.proxy.rlwy.net',
-#         'PORT': '18880',
-#     }
-# }
 
 
 # Password validation
