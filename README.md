@@ -1,4 +1,4 @@
-# AI Chat Assistant Backend
+# Backend for [AI CHAT](https://github.com/SmolDuck02/ai-chat)
 
 ## Setting Up the Development Environment
 
