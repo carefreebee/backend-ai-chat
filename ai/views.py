@@ -139,6 +139,7 @@ def ask(request):
             response = client.chat.completions.create(
                 model="gpt-3.5-turbo",
                 messages=conversation_history,
+                ignored=["Ylokh", "GptGo", "AItianhu", "Aibn", "Myshell", "FreeGpt"]
             )
             response = response.choices[0].message.content
 
