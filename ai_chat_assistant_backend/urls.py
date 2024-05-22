@@ -17,17 +17,25 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from ai.views import ask, signup, signinGuest, signinUser
-from chat.views import addChat, getChats
+from ai.views import ask, askImage, signup, signinGuest, signinUser, getAllUsers
+from chat.views import addChat, getChats, addGroupChat, getGroupChats, addPrivateChat, getPrivateChats
 
 urlpatterns = [
     path('ask/', ask, name='ask'),
+    path('askImage/', askImage, name='askImage'),
     path('signup/', signup, name='signup'),
     path('signin/guest/', signinGuest, name='signin/guest'),
     path('signin/user/', signinUser, name='signin/user'),
+    path('getAllUsers/', getAllUsers, name='getAllUsers'),
 
     path('addChat/', addChat, name='addChat'),
     path('getChats/', getChats, name='getChats'),
+    path('addGroupChat/', addGroupChat, name='addGroupChat'),
+    path('getGroupChats/<int:userId>/', getGroupChats, name='getGroupChats'),
+    path('addPrivateChat/', addPrivateChat, name='addPrivateChat'),
+    path('getPrivateChats/<int:userId>/', getPrivateChats, name='getPrivateChats'),
+
+    
     path('admin/', admin.site.urls),
 
 ]

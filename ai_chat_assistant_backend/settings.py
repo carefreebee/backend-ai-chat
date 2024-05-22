@@ -33,6 +33,7 @@ if ENVIROMENT == 'development':
 else:
     DEBUG = False
 
+
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'web-production-019a.up.railway.app']
 CSRF_TRUSTED_ORIGINS = ['https://web-production-019a.up.railway.app']
 
@@ -90,6 +91,9 @@ WSGI_APPLICATION = 'ai_chat_assistant_backend.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+
+
+
 
 DATABASES = {
     'default': {
