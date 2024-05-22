@@ -13,8 +13,15 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms.models import model_to_dict
 import asyncio
+from django.contrib.auth.models import User
 
+@csrf_exempt
+def getAllUsers(request):
+    if request.method == 'GET':
+        users = User.objects.all()
+        users = [{'id': user.id, 'username': user.username} for user in users if not user.username.lower() == 'admin']
 
+        return JsonResponse({'users' : users})
 
 @csrf_exempt
 def signup(request):
@@ -54,11 +61,11 @@ def signinUser(request):
         data = json.loads(request.body)
         username = data.get('username')
         password = data.get('password1')
-        try:
-            user = authenticate(username=username, password=password)
-            
+        user = authenticate(username=username, password=password)
+      
+        if user is not None:    
             return JsonResponse({'user' :  { 'id': user.id, 'username' : user.username}}) 
-        except ObjectDoesNotExist:
+        else:
         # Handle the case where the user does not exist
             return JsonResponse({'error' : 'User does not exists!'}) 
 
@@ -85,6 +92,31 @@ empty_responses = [
     "Oops, I must've dozed off. Could you repeat that, please?"  # Added response
 ]
 
+
+from g4f.client import Client as client_ai
+from g4f.Provider import DeepInfraImage
+
+@csrf_exempt
+def askImage(request):
+    # Set event loop policy to default
+    asyncio.set_event_loop_policy(asyncio.DefaultEventLoopPolicy())
+
+    data = json.loads(request.body)
+    imagePrompt = data.get('imagePrompt')
+    print(imagePrompt)
+    
+    if request.method == 'POST':
+
+        client = client_ai(provider=DeepInfraImage, image_provider=DeepInfraImage)
+        response = client.images.generate(
+            api_key= '',
+            model='stability-ai/sdxl',
+            prompt=imagePrompt,
+        )
+        image_url = response.data[0].url
+        print(image_url)
+
+        return JsonResponse({'success': True, 'imageResponse': image_url})
 
 # TODO : add response to convo history.
 
